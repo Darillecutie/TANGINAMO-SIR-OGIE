@@ -1,0 +1,52 @@
+package main4.java;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class main4 {
+
+    public static void main(String[] args) {
+        new JFrame("Sum of Two Numbers") {{
+            setSize(400, 400);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLayout(null);
+
+            JTextField num1Field = new JTextField();
+            num1Field.setBounds(50, 50, 100, 30);
+            JTextField num2Field = new JTextField();
+            num2Field.setBounds(200, 50, 100, 30);
+
+            JButton addButton = new JButton("Add");
+            addButton.setBounds(150, 100, 100, 30); 
+
+            JLabel resultLabel = new JLabel("Result: ");
+            resultLabel.setBounds(50, 150, 250, 30);
+
+            addButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        // Parse the numbers from the text fields
+                        int num1 = Integer.parseInt(num1Field.getText());
+                        int num2 = Integer.parseInt(num2Field.getText());
+                        // Calculate the sum
+                        int sum = num1 + num2;
+                        // Set the result label to show the sum
+                        resultLabel.setText("Result: " + sum);
+                    } catch (NumberFormatException ex) {
+                        // Handle invalid input
+                        resultLabel.setText("Please enter valid integers.");
+                    }
+                }
+            });
+
+            // Add components to the frame in the desired order
+            add(num1Field);
+            add(num2Field);
+            add(addButton); // Add button before the result label
+            add(resultLabel); 
+            setVisible(true);
+        }};
+    }
+}
